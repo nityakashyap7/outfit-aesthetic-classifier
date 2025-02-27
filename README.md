@@ -2,7 +2,7 @@
 #### USC Spring 2025 CSCI 467 course final project using CNNs and a custom scraped dataset
 
 ## Contributors
-- Maia Nkonabang ()
+- Maia Nkonabang (https://github.com/maiankona)
 - Nitya Kashyap (https://github.com/nityakashyap7)
 
 ## Introduction
