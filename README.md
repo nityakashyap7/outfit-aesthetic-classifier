@@ -1,4 +1,4 @@
-# outfit-aesthetic-classifier
+# Outfit Aesthetic Classifier
 #### USC Spring 2025 CSCI 467 course final project using CNNs and a custom scraped dataset
 
 ## Contributors
