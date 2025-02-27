@@ -2,8 +2,9 @@
 #### USC Spring 2025 CSCI 467 course final project using CNNs and a custom scraped dataset
 
 ## Contributors
-- Maia Nkonabang (https://github.com/maiankona)
-- Nitya Kashyap (https://github.com/nityakashyap7)
+- [Maia Nkonabang](https://github.com/maiankona)
+- [Nitya Kashyap](https://github.com/nityakashyap7)
+
 
 ## Introduction
 Our project aims to develop a machine learning model that classifies outfit images into aesthetic categories such as streetwear, Y2K, grunge, and dark academia. The model will take an image—either of a person wearing an outfit or clothing laid out flat—and output the most similar aesthetic label, or the top two if multiple images are provided. Initially, we considered building an outfit recommendation generator, but given the scope of our coursework, we determined classification using a convolutional neural network (CNN) to be a more feasible approach. This project addresses the real-world challenge of identifying and organizing fashion aesthetics, helping users better understand their style and find similar looks online. It has applications in personal styling, fashion search tools, and trend analysis.
