@@ -22,14 +22,15 @@ def main():
     stop = prompt_stops.pop(0) 
     while keepScrolling:
         driver.find_element(By.TAG_NAME, 'body').send_keys(Keys.END) # 1 scroll to end of page
-        time.sleep(5)  # Wait for images to load
+        time.sleep(1)  # Wait for images to load
         numScrolls += 1
         print(f"Scrolled {numScrolls} times")
 
         # check if we should keep scrolling
         if numScrolls == stop:
-            keepScrolling = input(f"Would you like to keep scrolling? (y/n)").lower == 'y'
+            keepScrolling = input(f"Would you like to keep scrolling? (y/n)").lower() == 'y'
             stop = prompt_stops.pop(0)
+            numScrolls = 0
 
 
 if __name__ == '__main__':
