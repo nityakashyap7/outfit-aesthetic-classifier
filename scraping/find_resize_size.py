@@ -4,6 +4,24 @@ from selenium.webdriver.common.keys import Keys
 import time
 import os
 import base64
+from PIL import Image
+from matplotlib import plt
+import numpy as np
+
+def find_size_stats(image_path):
+    # Open the image using PIL
+    image = Image.open(image_path)
+
+    # Get the size of the image
+    width, height = image.size
+
+    # Get the format of the image
+    format = image.format
+
+    # Get the mode of the image (e.g., RGB, L)
+    mode = image.mode
+
+    return width, height, format, mode
 
 def main():
 
