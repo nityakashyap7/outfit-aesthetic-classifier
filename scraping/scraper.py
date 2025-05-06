@@ -8,6 +8,7 @@ import base64
 from PIL import Image
 import io
 import numpy as np
+import traceback
 
 def scrape_one_search(class_name, search_query, num_scrolls=5):
     website = 'https://images.google.com/'
@@ -41,8 +42,18 @@ def scrape_one_search(class_name, search_query, num_scrolls=5):
     for i, img in enumerate(images):
         src = img.get_attribute('src')
         
-        # Skip if no source or if it's the Pinterest icon
-        if not src or 'pinterest.com/pinbutton' in src or 'pinterest.com/pinit' in src:
+        # Skip if no source or if it's any other junk sources (ex: the Pinterest icon)
+        if not src or any(sub in src for sub in [
+            'pinterest.com/pinbutton',
+            'pinterest.com/pinit',
+            'logo',
+            'favicon',
+            'sprite',
+            'static',
+            'icon',
+            'blank',
+            'data:image/gif',  # often 1x1 pixel placeholders
+        ]):
             continue
 
         try:
@@ -52,26 +63,30 @@ def scrape_one_search(class_name, search_query, num_scrolls=5):
                 img_data = base64.b64decode(base64_data)
             else:
                 # If it's a URL, attempt to download it
+                print("HTTPS URL FOUND: ", src)
                 response = requests.get(src, timeout=5)
                 if response.status_code == 200:
                     img_data = response.content
                 else:
                     continue  # Skip if the image couldn't be downloaded
 
-            # Convert the image to an RGB NumPy array
-            image = Image.open(io.BytesIO(img_data)).convert('RGB')
-            img_array = np.array(image)
+            # Convert the image to a PIL Image object first
+            image = Image.open(io.BytesIO(img_data))
 
             # Skip if the image is too small (likely an icon)
             if img_array.shape[0] < 100 or img_array.shape[1] < 100:
                 continue
+            
+            image.convert('RGB')
+            img_array = np.array(image)
 
             # Save the NumPy array to a .npy file
             np.save(os.path.join(folder_name, f'image_{next_index}.npy'), img_array)
             next_index += 1  # Increment index for next image
 
         except Exception as e:
-            print(f'Failed to process image {i}: {e}')
+            print(f'-----Failed to process image {i}----------')
+            traceback.print_exc()
             continue  # Skip this image if an error occurs
 
     #driver.quit()  # Close the browser session after scraping
