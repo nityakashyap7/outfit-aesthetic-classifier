@@ -11,6 +11,7 @@ import copy
 import os
 import numpy as np
 from sklearn.metrics import f1_score
+from sklearn.metrics import confusion_matrix
 
 
 torch.use_deterministic_algorithms(True)
@@ -134,6 +135,26 @@ def evaluate(model, X, y, name):
     print(f'    {name} Accuracy: {acc:.5f}, F1: {f1:.5f}')
     return acc
 
+def compute_each_class_accuracy(model, X, y, name):
+    model.eval() 
+        # Compute class-wise test accuracies
+    with torch.no_grad():
+        logits = model(X)
+        preds = torch.argmax(logits, dim=1)
+    print("\nClass-wise Test Accuracies:")
+    for cls in sorted(torch.unique(y).tolist()):
+        mask = (y == cls)
+        cls_acc = (preds[mask] == cls).float().mean().item()
+        print(f"  Class {cls}: {cls_acc:.4f}")
+
+def compute_confusion_matrix(model, X, y, name):
+    model.eval()
+    with torch.no_grad():
+        logits = model(X)
+        preds = torch.argmax(logits, dim=1)
+    cm = confusion_matrix(y.cpu().numpy(), preds.cpu().numpy())
+    print(f"\nConfusion Matrix ({name}):")
+    print(cm)
 
 def main(args):
     # Set random seed, for reproducibility
@@ -165,6 +186,9 @@ def main(args):
     dev_acc = evaluate(model, X_dev, y_dev, 'Dev')
     if args['test']:
         test_acc = evaluate(model, X_test, y_test, 'Test')
+        compute_each_class_accuracy(model, X_test, y_test, 'Test')
+        compute_confusion_matrix(model, X_test, y_test, 'Test')
+
 
 if __name__ == '__main__':
     args = {
