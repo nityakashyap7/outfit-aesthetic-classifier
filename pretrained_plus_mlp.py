@@ -23,10 +23,7 @@ class MLP_Head(nn.Module):
             nn.Linear(2048, 512),
             nn.ReLU(),
             nn.Dropout(dropout_prob),
-            nn.Linear(512, 128),
-            nn.ReLU(),
-            nn.Dropout(dropout_prob),
-            nn.Linear(128, 10)  # 10 classes for the final output
+            nn.Linear(512, 10)  # 10 classes for the final output
         )
 
     def forward(self, x):
