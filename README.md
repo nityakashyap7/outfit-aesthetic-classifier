@@ -11,9 +11,9 @@ This project uses machine learning to classify outfit images into aesthetic cate
 
 
 ## Links
-Read the full report [here](https://github.com/nityakashyap7/outfit-aesthetic-classifier/blob/main/CSCI_467_Project_Final_Report.pdf).  
-All code used in this project is publicly available in this repository.   
+Read the full report [here](https://github.com/nityakashyap7/outfit-aesthetic-classifier/blob/main/CSCI_467_Project_Final_Report.pdf).    
 Check out the dataset [here](https://doi.org/10.5281/zenodo.15164901).   
+All code used in this project is publicly available in this repository. 
 
 ## Commands to reproduce results
 `python3 baseline.py` Runs SVM baseline  
