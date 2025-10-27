@@ -14,7 +14,7 @@ All code used in this project are publicly available in this repository.
 Check out the dataset [here](https://doi.org/10.5281/zenodo.15164901). 
 
 ## Commands to reproduce results
-`python3 baseline.py` Runs SVM baseline
-`python3 cnn.py cnn` Runs standard CNN
-`python3 pretrained plus mlp.py` Runs pretrained model with MLP
+`python3 baseline.py` Runs SVM baseline  
+`python3 cnn.py cnn` Runs standard CNN  
+`python3 pretrained plus mlp.py` Runs pretrained model with MLP  
 
