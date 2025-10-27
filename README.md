@@ -1,5 +1,5 @@
 # Outfit Aesthetic Classifier
-#### USC Spring 2025 CSCI 467 course final project using CNNs and a custom scraped dataset
+#### USC Spring 2025 CSCI 467 course final project using SVMs and CNNs trained on a custom scraped dataset
 
 ## Contributors
 - [Maia Nkonabang](https://github.com/maiankona)
